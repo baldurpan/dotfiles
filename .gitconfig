@@ -3,6 +3,14 @@
 	email = baldurpan@gmail.com
 [push]
 	default = simple
+[alias]
+        unstage = reset HEAD --
+        recommit = commit --amend
+        visual = !gitx
+        deploy-dev = !git checkout development && git push origin development && git push home development
+        deploy-staging = !git checkout development && git push origin development
+        deploy-master = !git checkout master && git merge development && git push origin master && git checkout development
+        deploy-production = !git checkout production && git merge development && git push origin production && git checkout development
 [core]
 	excludesfile = /Users/baldur/.gitignore_global
 [difftool "sourcetree"]
