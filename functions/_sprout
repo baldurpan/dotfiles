@@ -1,12 +1,11 @@
 #compdef sprout
 
-_sprout() {
-    local curcontext="$curcontext" state line
-    typeset -A opt_args
-
+_sprout()
+{
     _arguments \
         '1: :->arg1'\
-        '2: :->arg2'
+        '2: :->arg2'\
+        '3: :->arg3'
 
     if [ -d .git ]; then
 		git_branches=`git branch --no-color --column | sed 's/* //'`
@@ -16,9 +15,10 @@ _sprout() {
 
     case $state in
     arg1)
-        _arguments '1:Options:(install update plugin daemon deploy gulp help)'
+        _arguments '1:Options:(hehehe install update plugin daemon deploy gulp help)'
+  return
     ;;
-    *)
+    arg2)
         case $words[2] in
         gulp)
             compadd "$@" install update
@@ -32,7 +32,11 @@ _sprout() {
         *)
             _files
         esac
+    ;;
+    arg3)
+        case $words[2] in
+        deploy)
+            compadd "$@" patch minor major
+        esac
     esac
 }
-
-_sprout "$@"
