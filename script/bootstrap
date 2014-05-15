@@ -138,3 +138,6 @@ fi
 
 echo ''
 echo '  All installed!'
+
+# Change to zsh
+chsh -s /bin/zsh && zsh
