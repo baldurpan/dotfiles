@@ -17,6 +17,6 @@ fi
 # Install homebrew packages
 brew install grc coreutils spark
 
-$ZSH/homebrew/install-cask.sh 2>&1
+$ZSH/homebrew/cask-install.sh 2>&1
 
 exit 0

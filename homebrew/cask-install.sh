@@ -9,17 +9,24 @@ function installcask() {
 
 installcask dropbox
 installcask google-chrome
+installcask google-chrome-canary
 installcask google-drive
 installcask firefox
-installcask iterm2
+installcask iterm2-beta
 installcask the-unarchiver
 installcask vlc
 installcask spotify
 installcask appcleaner
-installcask sublime-text-3
+installcask sublime-text3
 installcask atom
 installcask cakebrew
 installcask expandrive
 installcask filezilla
 installcask skype
 installcask transmission
+installcask adobe-reader
+installcask onepassword
+installcask twitter
+
+# Clean up the mess
+brew cask cleanup
