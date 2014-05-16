@@ -1,5 +1,6 @@
 # Install native apps
 brew tap phinze/homebrew-cask
+brew tap caskroom/versions
 brew install brew-cask
 
 function installcask() {
@@ -15,7 +16,7 @@ installcask the-unarchiver
 installcask vlc
 installcask spotify
 installcask appcleaner
-installcask sublime-text
+installcask sublime-text-3
 installcask atom
 installcask cakebrew
 installcask expandrive
