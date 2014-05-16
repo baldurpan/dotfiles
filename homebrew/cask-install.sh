@@ -25,7 +25,6 @@ installcask filezilla
 installcask skype
 installcask transmission
 installcask adobe-reader
-installcask twitter
 
 # Clean up the mess
 brew cask cleanup
