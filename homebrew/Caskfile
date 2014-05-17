@@ -1,0 +1,24 @@
+tap phinze/homebrew-cask
+tap caskroom/versions
+install caskroom/cask/brew-cask
+
+cask install dropbox
+cask install google-chrome
+cask install google-drive
+cask install firefox
+cask install iterm2-beta
+cask install the-unarchiver
+cask install vlc
+cask install spotify
+cask install appcleaner
+cask install sublime-text3
+cask install atom
+cask install cakebrew
+cask install expandrive
+cask install filezilla
+cask install skype
+cask install transmission
+cask install adobe-reader
+
+# Clean up the mess
+cask cleanup

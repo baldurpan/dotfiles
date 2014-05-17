@@ -12,11 +12,16 @@ then
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" > /tmp/homebrew-install.log
 fi
 
-
+# Upgrade homebrew
+brew update
 
 # Install homebrew packages
-brew install grc coreutils spark
+brew bundle $ZSH/homebrew/Brewfile
+# Install cask packages
+brew bundle $ZSH/homebrew/Caskfile
 
-$ZSH/homebrew/cask-install.sh 2>&1
+$ZSH/homebrew/configure.sh
+
+brew cleanup
 
 exit 0
