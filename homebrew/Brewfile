@@ -1,18 +1,15 @@
 tap jgonzales/php
 
+install zsh zsh-completions
 install grc
 install coreutils
 install spark
-install git
-install git-flow
+install git git-flow
 install node
 install dnsmasq
 install imagemagick
 install ffmpeg
 install memcached
-install php55
-install php55-mcrypt
-install php55-memcache
-install php55-imagick
+install php55 php55-mcrypt php55-memcache php55-imagick
 install mysql
 install phpmyadmin
