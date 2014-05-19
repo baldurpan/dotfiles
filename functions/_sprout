@@ -36,7 +36,7 @@ _sprout()
     arg3)
         case $words[2] in
         deploy)
-            compadd "$@" patch minor major
+            compadd "$@" prerelease patch minor major
         esac
     esac
 }
