@@ -20,9 +20,9 @@ git_dirty() {
   else
     if [[ $($git status --porcelain) == "" ]]
     then
-      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
+      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}$(sprout_version)"
     else
-      echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
+      echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}$(sprout_version)"
     fi
   fi
 }
@@ -55,6 +55,13 @@ ruby_version() {
   if (( $+commands[rvm-prompt] ))
   then
     echo "$(rvm-prompt | awk '{print $1}')"
+  fi
+}
+
+sprout_version() {
+  if ! [[ -z "$(sprout version)" ]]
+  then
+    echo " %{$fg_bold[yellow]%}$(sprout version)%{$reset_color%}"
   fi
 }
 
