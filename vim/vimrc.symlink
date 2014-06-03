@@ -1,6 +1,7 @@
 syntax on
 set number
 set tabstop=4
+set mouse=a
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
