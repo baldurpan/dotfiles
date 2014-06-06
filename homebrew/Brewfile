@@ -1,10 +1,12 @@
-tap jgonzales/php
+tap homebrew/php
 
 install zsh zsh-completions
 install grc
 install coreutils
 install spark
+install terminal-notifier
 install git git-flow
+install https://gist.githubusercontent.com/baldurpan/2e4a3e464cf2bcd7dc88/raw/94ec9875531a0580f2e478c17b54b32e60099444/git-dude.rb --HEAD
 install node
 install dnsmasq
 install imagemagick

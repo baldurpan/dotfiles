@@ -119,6 +119,12 @@ install_dotfiles () {
     fi
 
   done
+
+
+  for source in `find "$DOTFILES_ROOT" -maxdepth 2 -name \*.plist`
+  do
+    launchctl load $source
+  done
 }
 
 setup_gitconfig
