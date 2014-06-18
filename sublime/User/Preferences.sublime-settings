@@ -1,9 +1,11 @@
 {
 	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Source Code Pro",
+	"font_size": 12,
 	"ignored_packages":
 	[
-		"Vintage",
-		"AdvancedNewFile"
+		"AdvancedNewFile",
+		"Vintage"
 	],
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": false
