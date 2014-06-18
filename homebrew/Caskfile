@@ -19,6 +19,7 @@ cask install filezilla
 cask install skype
 cask install transmission
 cask install adobe-reader
+cask install codekit
 
 # Clean up the mess
 cask cleanup
