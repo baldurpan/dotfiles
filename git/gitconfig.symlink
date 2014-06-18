@@ -32,3 +32,6 @@
 [credential]
 	helper = GIT_CREDENTIAL_HELPER
 [alias]
+[dude]
+	interval = 30
+	icon = /Users/baldur/.git-dude/github_32.png
