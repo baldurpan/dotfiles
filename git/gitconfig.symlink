@@ -1,7 +1,7 @@
 [hub]
 	protocol = https
 [user]
-	name = Baldur Páll Hólmgeirsson
+	name = Baldur Páll Hólmgeirsson
 	email = baldurpan@gmail.com
 [push]
 	default = simple
