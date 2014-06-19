@@ -1,0 +1,9 @@
+if [ "$1" == "start" ]; then
+	echo "Starting dev environment"
+	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+	sudo apachectl start
+elif [ "$1" == "stop" ]; then
+	echo "Stopping dev environment"
+	launchctl remove homebrew.mxcl.mysql
+	sudo apachectl stop
+fi
