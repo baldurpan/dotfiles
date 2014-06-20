@@ -17,7 +17,6 @@ cask install cakebrew
 cask install expandrive
 cask install filezilla
 cask install skype
-cask install transmit
 cask install transmission
 cask install adobe-reader
 cask install codekit
