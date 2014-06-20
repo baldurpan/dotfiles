@@ -35,3 +35,5 @@
 [dude]
 	interval = 30
 	icon = /Users/baldur/.git-dude/github_32.png
+[mergetool]
+	keepBackup = true
