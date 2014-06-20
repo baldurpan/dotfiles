@@ -5,13 +5,29 @@ install grc
 install coreutils
 install spark
 install terminal-notifier
-install git git-flow
+install git
+install git-flow
 install https://gist.githubusercontent.com/baldurpan/2e4a3e464cf2bcd7dc88/raw/94ec9875531a0580f2e478c17b54b32e60099444/git-dude.rb --HEAD
 install node
+
+# Webdev ENV
 install dnsmasq
+# echo "address=/.dev/127.0.0.1" > /usr/local/etc/dnsmasq.conf
+# sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
+# sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+# dscacheutil -flushcache
 install imagemagick
 install ffmpeg
 install memcached
-install php55 php55-mcrypt php55-memcache php55-imagick
+install php55
+# To enable PHP in Apache add the following to httpd.conf and restart Apache:
+# LoadModule php5_module    /usr/local/opt/php55/libexec/apache2/libphp5.so
+install php55-mcrypt
+install php55-memcache
+install php55-imagick
 install mysql
+# /usr/local/Cellar/mysql/$/bin/mysqladmin -u root password 'YOUR_NEW_PASSWORD'
+# ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+# launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 install phpmyadmin
+# cp /usr/local/share/phpmyadmin/config.sample.inc.php /usr/local/share/phpmyadmin/config.inc.php
