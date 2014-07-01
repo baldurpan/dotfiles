@@ -17,7 +17,7 @@ install dnsmasq
 # sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 # dscacheutil -flushcache
 install imagemagick
-install ffmpeg
+install ffmpeg --with-libvpx --with-libvorbis --with-theora
 install memcached
 install php55
 # To enable PHP in Apache add the following to httpd.conf and restart Apache:

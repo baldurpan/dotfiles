@@ -1,0 +1,9 @@
+if [ "$1" = "" ] ; then
+	echo "Usage: html5video <filename>"
+else
+	file=$(basename "$1")
+	filename="${file%.*}-html5"
+	ffmpeg -i $1 -vcodec libx264 -pix_fmt yuv420p -profile:v baseline -preset slower -crf 18 -vf "scale=trunc(in_w/2)*2:trunc(in_h/2)*2" $filename.mp4
+	ffmpeg -i $1 -c:v libvpx -c:a libvorbis -pix_fmt yuv420p -quality good -b:v 2M -crf 5 -vf "scale=trunc(in_w/2)*2:trunc(in_h/2)*2" $filename.webm
+	ffmpeg -i $1 -q 5 -pix_fmt yuv420p -acodec libvorbis -vcodec libtheora $filename.ogv
+fi
