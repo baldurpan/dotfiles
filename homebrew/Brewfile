@@ -2,6 +2,7 @@ tap homebrew/php
 
 install zsh zsh-completions
 install grc
+install wget
 install coreutils
 install spark
 install terminal-notifier
