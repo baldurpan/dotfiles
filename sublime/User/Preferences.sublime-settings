@@ -5,8 +5,8 @@
 	"font_size": 12,
 	"ignored_packages":
 	[
-		"AdvancedNewFile",
-		"Vintage"
+		"Vintage",
+		"AdvancedNewFile"
 	],
 	"soda_folder_icons": true,
 	"theme": "Soda Dark.sublime-theme",
