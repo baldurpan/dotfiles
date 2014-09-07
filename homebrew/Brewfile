@@ -16,6 +16,8 @@ install dnsmasq
 # echo "address=/.dev/127.0.0.1" > /usr/local/etc/dnsmasq.conf
 # sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
 # sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+# sudo mkdir -v /etc/resolver
+# sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
 # dscacheutil -flushcache
 install imagemagick
 install ffmpeg --with-libvpx --with-libvorbis --with-theora
