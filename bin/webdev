@@ -1,19 +1,43 @@
+#!/bin/bash
+
 # Ask for the administrator password upfront
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+spinner() {
+	local msg="$1"
+	local pid=$2
+	local delay=0.15
+	local spinstr='|/-\'
+	while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+		local temp=${spinstr#?}
+		printf "$msg %c " "$spinstr"
+		local spinstr=$temp${spinstr%"$temp"}
+		sleep $delay
+		printf "\r"
+	done
+	printf  "$msg \e[0;32mDONE\e[00m\n"
+}
+
 if [ "$1" == "start" ]; then
-	echo "Starting dev environment"
-	launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-	launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
-	sudo apachectl start
-	echo "Dev environment started"
+	msg="Starting MySQL..."
+	launchctl load -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
+	msg="Starting Memcached..."
+	launchctl load -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
+	msg="Starting Apache..."
+	sudo apachectl start & spinner "$msg" $! && \
+	msg="Starting dnsmasq..."
+	sudo launchctl kickstart system/homebrew.mxcl.dnsmasq & spinner "$msg" $!
 elif [ "$1" == "stop" ]; then
-	echo "Stopping dev environment"
-	launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-	launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
-	sudo apachectl stop
-	echo "Dev environment stopped"
+	msg="Stopping MySQL..."
+	launchctl unload -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
+	msg="Stopping Memcached..."
+	launchctl unload -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
+	msg="Stopping Apache..."
+	sudo apachectl stop & spinner "$msg" $!
+elif [ "$1" == "restart" ]; then
+	webdev stop
+	webdev start
 fi
