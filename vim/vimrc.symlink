@@ -1,8 +1,14 @@
 syntax on
 set number
 set tabstop=4
-set mouse=a
+set softtabstop=4
+set showcmd 
+set wildmenu
+set lazyredraw
+set showmatch
+set incsearch
+set hlsearch
 cmap w!! w !sudo tee > /dev/null %
 
 " Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+filetype indent on

@@ -59,10 +59,10 @@ ruby_version() {
 }
 
 sprout_version() {
-  if ! [[ -z "$(sprout version)" ]]
-  then
-    echo " %{$fg_bold[yellow]%}$(sprout version)%{$reset_color%}"
-  fi
+#  if ! [[ -z "$(sprout version)" ]]
+#  then
+#    echo " %{$fg_bold[yellow]%}$(sprout version)%{$reset_color%}"
+#  fi
 }
 
 rb_prompt() {

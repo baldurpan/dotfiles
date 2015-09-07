@@ -6,6 +6,8 @@
 [push]
 	default = simple
 [alias]
+	pl = pull --rebase
+	continue = rebase --continue
 	unstage = reset HEAD --
 	recommit = commit --amend
 	visual = !gitx
@@ -13,6 +15,8 @@
 	promote = !$ZSH/bin/git-promote
 	wtf = !$ZSH/bin/git-wtf
 	count = !git shortlog -sn
+	spull = "__git_spull() { git pull \"$@\" && git submodule sync --recursive && git submodule update --init --recursive; }; __git_spull"
+	spush = push --recurse-submodules=on-demand
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
@@ -36,3 +40,9 @@
 	icon = /Users/baldur/.git-dude/github_32.png
 [mergetool]
 	keepBackup = true
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+[branch]
+	autosetuprebase = always

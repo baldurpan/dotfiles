@@ -23,20 +23,24 @@ spinner() {
 
 if [ "$1" == "start" ]; then
 	msg="Starting MySQL..."
-	launchctl load -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
+	sudo launchctl load -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
 	msg="Starting Memcached..."
-	launchctl load -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
-	msg="Starting Apache..."
-	sudo apachectl start & spinner "$msg" $! && \
+	sudo launchctl load -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
+	msg="Starting PHP-FPM..."
+	sudo launchctl load -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $! && \
+	msg="Starting nginx..."
+	sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist & spinner "$msg" $! && \
 	msg="Starting dnsmasq..."
 	sudo launchctl kickstart system/homebrew.mxcl.dnsmasq & spinner "$msg" $!
 elif [ "$1" == "stop" ]; then
 	msg="Stopping MySQL..."
-	launchctl unload -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
+	sudo launchctl unload -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
 	msg="Stopping Memcached..."
-	launchctl unload -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
-	msg="Stopping Apache..."
-	sudo apachectl stop & spinner "$msg" $!
+	sudo launchctl unload -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
+	msg="Stopping PHP-FPM..."
+	sudo launchctl unload -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $!
+	msg="Stopping nginx..."
+	sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist & spinner "$msg" $!
 elif [ "$1" == "restart" ]; then
 	webdev stop
 	webdev start
