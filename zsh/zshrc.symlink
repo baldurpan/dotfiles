@@ -42,5 +42,3 @@ done
 
 unset config_files
 source ~/.bash_aliases
-
-export PATH=core/script:$PATH
