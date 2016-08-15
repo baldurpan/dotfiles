@@ -23,24 +23,29 @@ spinner() {
 
 if [ "$1" == "start" ]; then
 	msg="Starting MySQL..."
-	sudo launchctl load -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
+	launchctl load -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
 	msg="Starting Memcached..."
-	sudo launchctl load -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
+	launchctl load -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
 	msg="Starting PHP-FPM..."
-	sudo launchctl load -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $! && \
+	#sudo launchctl load -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $! && \
+	sudo launchctl load -w /usr/local/opt/php70/homebrew.mxcl.php70.plist & spinner "$msg" $! && \
 	msg="Starting nginx..."
 	sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist & spinner "$msg" $! && \
 	msg="Starting dnsmasq..."
-	sudo launchctl kickstart system/homebrew.mxcl.dnsmasq & spinner "$msg" $!
+	sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist & spinner "$msg" $!
 elif [ "$1" == "stop" ]; then
 	msg="Stopping MySQL..."
-	sudo launchctl unload -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
+	launchctl unload -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
 	msg="Stopping Memcached..."
-	sudo launchctl unload -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
+	launchctl unload -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
 	msg="Stopping PHP-FPM..."
-	sudo launchctl unload -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $!
+	#sudo launchctl unload -w /usr/local/opt/php55/homebrew.mxcl.php55.plist & spinner "$msg" $! && \
+	#sudo launchctl unload -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $!
+	sudo launchctl unload -w /usr/local/opt/php70/homebrew.mxcl.php70.plist & spinner "$msg" $!
 	msg="Stopping nginx..."
-	sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist & spinner "$msg" $!
+	sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist & spinner "$msg" $! && \
+	msg="Stopping dnsmasq"
+	sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist & spinner "$msg" $!
 elif [ "$1" == "restart" ]; then
 	webdev stop
 	webdev start
