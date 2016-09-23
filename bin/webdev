@@ -21,29 +21,28 @@ spinner() {
 	printf  "$msg \e[0;32mDONE\e[00m\n"
 }
 
-if [ "$1" == "start" ]; then
-	msg="Starting MySQL..."
-	sudo launchctl load -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
-	msg="Starting Memcached..."
-	sudo launchctl load -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
-	msg="Starting PHP-FPM..."
-	sudo launchctl load -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $! && \
-	msg="Starting nginx..."
-	sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist & spinner "$msg" $! && \
-	msg="Starting dnsmasq..."
-	sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist & spinner "$msg" $!
-elif [ "$1" == "stop" ]; then
-	msg="Stopping MySQL..."
-	sudo launchctl unload -w /usr/local/opt/mysql/homebrew.mxcl.mysql.plist & spinner "$msg" $! && \
-	msg="Stopping Memcached..."
-	sudo launchctl unload -w /usr/local/opt/memcached/homebrew.mxcl.memcached.plist & spinner "$msg" $! && \
-	msg="Stopping PHP-FPM..."
-	sudo launchctl unload -w /usr/local/opt/php56/homebrew.mxcl.php56.plist & spinner "$msg" $! && \
-	msg="Stopping nginx..."
-	sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist & spinner "$msg" $! && \
-	msg="Stopping dnsmasq..."
-	sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist & spinner "$msg" $!
-elif [ "$1" == "restart" ]; then
-	webdev stop
-	webdev start
+if [ -z "$2" ]; then
+
+	if [ "$1" == "start" ]; then
+		brew services start mysql
+		brew services start memcached
+		brew services start php70
+		sudo brew services start nginx
+		sudo brew services start dnsmasq
+	elif [ "$1" == "stop" ]; then
+		brew services stop mysql
+		brew services stop memcached
+		brew services stop php70
+		sudo brew services stop nginx
+		sudo brew services stop dnsmasq
+	elif [ "$1" == "restart" ]; then
+		brew services restart mysql
+		brew services restart memcached
+		brew services restart php70
+		sudo brew services restart nginx
+		sudo brew services restart dnsmasq
+	fi
+
+elif [ "$1" == "start" ] || [ "$1" == "stop" ] || [ "$1" == "restart" ]; then
+	brew services $1 $2
 fi

@@ -7,6 +7,9 @@ export PROJECTS=~/Code
 # your websites project folder that we can `w [tab]` to
 export WEBPROJECTS=/var/www
 
+# Homebrew github api token
+export HOMEBREW_GITHUB_API_TOKEN=218c8e6c670a36bb50846270f88cbe6f6711f1d8
+
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
