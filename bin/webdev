@@ -25,19 +25,19 @@ if [ -z "$2" ]; then
 
 	if [ "$1" == "start" ]; then
 		brew services start mysql
-		brew services start memcached
+		sudo brew services start memcached
 		brew services start php70
 		sudo brew services start nginx
 		sudo brew services start dnsmasq
 	elif [ "$1" == "stop" ]; then
 		brew services stop mysql
-		brew services stop memcached
+		sudo brew services stop memcached
 		brew services stop php70
 		sudo brew services stop nginx
 		sudo brew services stop dnsmasq
 	elif [ "$1" == "restart" ]; then
 		brew services restart mysql
-		brew services restart memcached
+		sudo brew services restart memcached
 		brew services restart php70
 		sudo brew services restart nginx
 		sudo brew services restart dnsmasq
