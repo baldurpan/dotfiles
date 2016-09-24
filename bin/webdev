@@ -1,48 +1,67 @@
 #!/bin/bash
 
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-spinner() {
-	local msg="$1"
-	local pid=$2
-	local delay=0.15
-	local spinstr='|/-\'
-	while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-		local temp=${spinstr#?}
-		printf "$msg %c " "$spinstr"
-		local spinstr=$temp${spinstr%"$temp"}
-		sleep $delay
-		printf "\r"
-	done
-	printf  "$msg \e[0;32mDONE\e[00m\n"
-}
+phpversion="`php -r \"error_reporting(0); echo PHP_MAJOR_VERSION . PHP_MINOR_VERSION;\"`"
 
 if [ -z "$2" ]; then
 
-	if [ "$1" == "start" ]; then
+	if [ "$1" == "install" ]; then
+		# Add taps
+		brew tap homebrew/dupes
+		brew tap homebrew/versions
+		brew tap homebrew/homebrew-php
+		# Install legacy php 5.6
+		brew install php56 php56-mcrypt php56-memcached php56-memcache php56-intl
+		brew unlink php56
+		# Install php 7
+		brew install php70 php70-mcrypt php70-intl
+		brew install --HEAD homebrew/php/php70-memcached
+	elif [ "$1" == "start" ]; then
 		brew services start mysql
-		sudo brew services start memcached
-		brew services start php70
-		sudo brew services start nginx
-		sudo brew services start dnsmasq
+		brew services start memcached
+		brew services start php$phpversion
+		brew services start nginx
+		brew services start dnsmasq
 	elif [ "$1" == "stop" ]; then
 		brew services stop mysql
-		sudo brew services stop memcached
-		brew services stop php70
-		sudo brew services stop nginx
-		sudo brew services stop dnsmasq
+		brew services stop memcached
+		brew services stop php$phpversion
+		brew services stop nginx
+		brew services stop dnsmasq
 	elif [ "$1" == "restart" ]; then
 		brew services restart mysql
-		sudo brew services restart memcached
-		brew services restart php70
-		sudo brew services restart nginx
-		sudo brew services restart dnsmasq
+		brew services restart memcached
+		brew services restart php$phpversion
+		brew services restart nginx
+		brew services restart dnsmasq
 	fi
 
 elif [ "$1" == "start" ] || [ "$1" == "stop" ] || [ "$1" == "restart" ]; then
 	brew services $1 $2
+elif [ "$1" == "switchphp" ]; then
+
+	newphpversion="$2"
+
+	brew list php$newphpversion 2> /dev/null > /dev/null
+
+	if [ $? -eq 0 ]; then
+
+		echo "PHP version $newphpversion found"
+
+		# Stop current php
+		webdev stop php$phpversion 2> /dev/null > /dev/null
+
+		echo "Unlinking old binaries..."
+		brew unlink php$phpversion 2> /dev/null > /dev/null
+		#brew unlink php$phpversion
+
+		echo "Linking new binaries..."
+		brew link php$newphpversion 2> /dev/null > /dev/null
+
+		webdev start php$newphpversion 2> /dev/null > /dev/null
+		echo "Done."
+	else
+		echo "PHP version $newphpversion was not found."
+		exit 1
+	fi
+
 fi
