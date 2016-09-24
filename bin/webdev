@@ -4,6 +4,14 @@ phpversion="`php -r \"error_reporting(0); echo PHP_MAJOR_VERSION . PHP_MINOR_VER
 
 if [ -z "$2" ]; then
 
+	# Ask for the administrator password upfront
+	sudo -v
+
+	# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+
 	if [ "$1" == "install" ]; then
 		# Add taps
 		brew tap homebrew/dupes
@@ -19,20 +27,20 @@ if [ -z "$2" ]; then
 		brew services start mysql
 		brew services start memcached
 		brew services start php$phpversion
-		brew services start nginx
-		brew services start dnsmasq
+		sudo brew services start nginx
+		sudo brew services start dnsmasq
 	elif [ "$1" == "stop" ]; then
 		brew services stop mysql
 		brew services stop memcached
 		brew services stop php$phpversion
-		brew services stop nginx
-		brew services stop dnsmasq
+		sudo brew services stop nginx
+		sudo brew services stop dnsmasq
 	elif [ "$1" == "restart" ]; then
 		brew services restart mysql
 		brew services restart memcached
 		brew services restart php$phpversion
-		brew services restart nginx
-		brew services restart dnsmasq
+		sudo brew services restart nginx
+		sudo brew services restart dnsmasq
 	fi
 
 elif [ "$1" == "start" ] || [ "$1" == "stop" ] || [ "$1" == "restart" ]; then
