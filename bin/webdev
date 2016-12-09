@@ -66,6 +66,7 @@ elif [ "$1" == "switchphp" ]; then
 		brew link php$newphpversion 2> /dev/null > /dev/null
 
 		webdev start php$newphpversion 2> /dev/null > /dev/null
+		webdev restart memcached 2> /dev/null > /dev/null
 		echo "Done."
 	else
 		echo "PHP version $newphpversion was not found."
