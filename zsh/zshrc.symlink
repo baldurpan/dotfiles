@@ -8,7 +8,8 @@ export PROJECTS=~/Code
 export WEBPROJECTS=/var/www
 
 # Homebrew github api token
-export HOMEBREW_GITHUB_API_TOKEN=218c8e6c670a36bb50846270f88cbe6f6711f1d8
+export HOMEBREW_GITHUB_API_TOKEN=8987a4ed3b9e1ffac228a3d91f680f1cb28d99e2
+
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
@@ -48,3 +49,5 @@ source ~/.bash_aliases
 
 export NVM_DIR="/Users/baldur/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH="$HOME/.yarn/bin:$PATH"
