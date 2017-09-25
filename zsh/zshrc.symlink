@@ -8,7 +8,7 @@ export PROJECTS=~/Code
 export WEBPROJECTS=/var/www
 
 # Homebrew github api token
-export HOMEBREW_GITHUB_API_TOKEN=8987a4ed3b9e1ffac228a3d91f680f1cb28d99e2
+export HOMEBREW_GITHUB_API_TOKEN=aa955a7cdeb4e7e6daf50fc24abc4558c632e460
 
 
 # use .localrc for SUPER SECRET CRAP that you don't
